@@ -8,7 +8,7 @@ module.exports = {
         path: path.join(__dirname, "dist"),
         filename: 'bundle.js'
     },
-    target: "node",
+    target: "web",
     module: {
         rules: [
             {
@@ -39,5 +39,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './index.html'
         })
-    ]
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 3001
+    }
 }

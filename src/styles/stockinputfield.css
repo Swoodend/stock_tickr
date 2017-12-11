@@ -1,0 +1,33 @@
+.stock-input-field-container {
+    width: 100%;
+    height: 11.5%;
+    background: blue;
+}
+
+.stock-input-field-container form{
+    height: 100%;
+    width: 100%;
+    background: rgb(255, 165, 0);
+    display: flex;
+}
+
+input[type=text]{
+    width: 90%;
+    margin: 0;
+    font-size: 3em;
+    text-transform: uppercase;
+    border: 0;
+    padding: 0 0 0 10px;
+}
+
+/*removes the placeholder when the input is focused on*/
+input[type=text]:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+#stock-submit {
+    color: green;
+    width: 10%;
+    cursor: pointer;
+    font-size: 1em;
+}
