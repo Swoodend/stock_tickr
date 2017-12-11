@@ -5,7 +5,7 @@ export default class CurrentStocksPanel extends Component {
     render(){
         return (
             <div className="current-stocks-panel">
-
+                {this.props.currentStocks}
             </div>
         )
     }
