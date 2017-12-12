@@ -8,7 +8,8 @@ import '../styles/app.css';
 
 @connect((store) => {
     return {
-        chartData: store.chartData
+        chartData: store.chartData,
+        dispatch: store.dispatch
     }
 })
 export default class App extends Component {
@@ -19,7 +20,7 @@ export default class App extends Component {
                 <MainTitle/>
                 <MainChart chartData={this.props.chartData}/>
                 <CurrentStocksPanel currentStocks={currentStocks}/>
-                <StockInputField/>
+                <StockInputField dispatch={this.props.dispatch}/>
             </div>
         );  
     }
