@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import StockTag from './StockTag';
 import '../styles/currentstockspanel.css';
 
 export default class CurrentStocksPanel extends Component {
     render(){
+        let stockTags = this.props.currentStocks.map((stockName, i) => {
+            return (
+                <StockTag key={i} symbol={stockName}/>
+            )
+        })
         return (
             <div className="current-stocks-panel">
-                {this.props.currentStocks}
+                {stockTags}
             </div>
         )
     }
