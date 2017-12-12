@@ -4,7 +4,7 @@ const initialState = {
             type: 'line'
         },
         title: {
-            text: 'Monthly Closing Price'
+            text: 'Monthly Closing Price Per Share'
         },
         xAxis: {
             categories: ['Jan', 'Feb', 'Mar']
