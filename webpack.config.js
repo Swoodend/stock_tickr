@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+import API_KEY from 'secret';
 
 module.exports = {
     entry: './src/index.js',
@@ -34,7 +35,8 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
+            'process.env.NODE_ENV': JSON.stringify('development'),
+            'process.env.API_KEY': JSON.stringify(API_KEY)
         }),
         new HtmlWebpackPlugin({
             template: './index.html'
