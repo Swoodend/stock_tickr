@@ -17,7 +17,6 @@ export function getData(symbol){
 export function getInitialState(){
     //want to have some stock data displayed to the user on initial page load.
     //this fn will get stock prices for GOOG and AAPL
-    console.log('GIS CALLED');
     return dispatch => {
         Promise.all([getData('GOOG'), getData('AAPL')])
         .then(([goog, aapl]) => {
