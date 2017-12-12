@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-import API_KEY from 'secret';
+const API_KEY = require('./src/secret').API_KEY;
 
 module.exports = {
     entry: './src/index.js',
