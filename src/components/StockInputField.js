@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getData } from '../actions/actions';
 import '../styles/stockinputfield.css';
 
 export default class StockInputField extends Component {
@@ -10,6 +11,7 @@ export default class StockInputField extends Component {
     handleSubmit(e){
         e.preventDefault();
         let stockSymbol = e.target.stockSymbol.value;
+        getData(stockSymbol);
         //do some redux/socketio stuff here
     }
 
