@@ -14,6 +14,13 @@ export function getData(symbol){
     )
 }
 
+export function addStock(symbol, seriesObj){
+    return {
+        type: "ADD_STOCK",
+        payload: seriesObj
+    }
+}
+
 export function getInitialState(year){
 
     return dispatch => {
@@ -34,7 +41,7 @@ export function getInitialState(year){
 
 export function formatDataForHighcharts(apiResponse, year="2017"){
     //takes in apiResponse (obj literal) and formats for usage by highchartsApi    
-    let symbol = apiResponse['Meta Data']['2. Symbol'];
+    let symbol = apiResponse['Meta Data']['2. Symbol'].toUpperCase();
 
     //get all the data keys for year 2017, you could allow the user to choose a year    
     let allDataKeysForYear = Object.keys(apiResponse['Weekly Adjusted Time Series']).filter(date => {
@@ -58,7 +65,7 @@ export function formatDataForHighcharts(apiResponse, year="2017"){
     });
 
     let monthlyValues = recentKeysArr.map( date => {
-        return [apiResponse['Weekly Adjusted Time Series']][0][date]['4. close'];
+        return parseInt([apiResponse['Weekly Adjusted Time Series']][0][date]['4. close']);
     });
 
     //these objects get put into the series array
@@ -66,6 +73,4 @@ export function formatDataForHighcharts(apiResponse, year="2017"){
         name: symbol,
         data: monthlyValues
     }
-
-
 }
