@@ -63,10 +63,10 @@ export function formatDataForHighcharts(apiResponse, year="2017"){
     let recentKeysArr = Object.keys(mostRecentKeys).map(date => {
         return mostRecentKeys[date];
     });
-
+    //reverse as API lists from Dec -> Jan
     let monthlyValues = recentKeysArr.map( date => {
         return parseInt([apiResponse['Weekly Adjusted Time Series']][0][date]['4. close']);
-    });
+    }).reverse();
 
     //these objects get put into the series array
     return {
