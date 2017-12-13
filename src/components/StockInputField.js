@@ -16,7 +16,6 @@ export default class StockInputField extends Component {
             let stockData = formatDataForHighcharts(apiData);
             this.props.dispatch(addStock(stockSymbol, stockData));
         })
-        //do some redux/socketio stuff here
     }
 
     render(){
