@@ -11,6 +11,7 @@ export default class StockInputField extends Component {
     handleSubmit(e){
         e.preventDefault();
         let stockSymbol = e.target.stockSymbol.value;
+        e.target.stockSymbol.value = '';
         getData(stockSymbol)
         .then((apiData) => {
             let stockData = formatDataForHighcharts(apiData);
