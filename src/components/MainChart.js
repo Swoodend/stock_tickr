@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactHighcharts from 'react-highcharts';
+import FetchDataModal from './FetchDataModal';
 import '../styles/mainchart.css';
 
 export default class MainChart extends Component {
@@ -15,9 +16,12 @@ export default class MainChart extends Component {
         return (
             <div className="main-chart-container">
                 <ReactHighcharts 
+                    ref="chart"
                     config={this.props.chartData} 
                     domProps={{style: {height: "100%", width:"100%"}}}
+                    isPureConfig
                 />
+                {this.props.fetchingData && <FetchDataModal/>}
             </div>
         )
     }
