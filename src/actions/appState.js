@@ -11,3 +11,10 @@ export function updateChartTitle(title){
         payload: title
     }
 }
+
+export function fetchingData(bool){
+    return {
+        type: "FETCHING_DATA",
+        payload: bool
+    }
+}
