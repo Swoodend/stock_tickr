@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getData, formatDataForHighcharts, addStock } from '../actions/actions';
+import { fetchingData } from '../actions/appState';
 import '../styles/stockinputfield.css';
 
 export default class StockInputField extends Component {
@@ -12,10 +13,12 @@ export default class StockInputField extends Component {
         e.preventDefault();
         let stockSymbol = e.target.stockSymbol.value;
         e.target.stockSymbol.value = '';
+        this.props.dispatch(fetchingData(true));
         getData(stockSymbol)
         .then((apiData) => {
             let stockData = formatDataForHighcharts(apiData);
             this.props.dispatch(addStock(stockSymbol, stockData));
+            this.props.dispatch(fetchingData(false));
         })
     }
 
