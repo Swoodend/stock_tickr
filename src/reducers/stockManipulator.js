@@ -1,21 +1,21 @@
 const initialState = {
-    chartData : {
-        chart: {
-            type: 'line'
-        },
+
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Enter a stock below'
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
         title: {
-            text: 'Enter a stock below'
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-            title: {
-                text: 'Price Per Share (USD)'
-            }
-        },
-        series: []
-    }
+            text: 'Price Per Share (USD)'
+        }
+    },
+    series: []
+
 };
 
 export function stockManipulator(state = initialState, action){
@@ -23,22 +23,16 @@ export function stockManipulator(state = initialState, action){
 
         case "ADD_STOCK":
             return Object.assign({}, state, {
-                chartData: {
-                    ...state.chartData,
-                    series: state.chartData.series.concat(action.payload)   
-                }
+                series: state.series.concat(action.payload)
             });
 
         case "REMOVE_STOCK":
-            let series = state.chartData.series.filter( chartObj => {
+            let series = state.series.filter( chartObj => {
                 return chartObj.name !== action.payload
             });
             
             return Object.assign({}, state, { 
-                chartData: {
-                    ...state.chartData,
-                    series
-                }
+                series
             })
 
         default: 
