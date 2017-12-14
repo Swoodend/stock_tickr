@@ -1,6 +1,7 @@
 const initialState = {
     stockInputValue: '',
-    chartTitle: 'Enter a stock below'
+    chartTitle: 'Enter a stock below',
+    fetchingData: false
 }
 
 export function appState(state = initialState, action){
@@ -13,6 +14,11 @@ export function appState(state = initialState, action){
         case "UPDATE_CHART_TITLE":
             return Object.assign({}, state, {
                 chartTitle: action.payload
+            })
+
+        case "FETCHING_DATA":
+            return Object.assign({}, state, {
+                fetchingData: action.payload
             })
         default: 
             return state;
