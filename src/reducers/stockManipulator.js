@@ -29,6 +29,18 @@ export function stockManipulator(state = initialState, action){
                 }
             });
 
+        case "REMOVE_STOCK":
+            let series = state.chartData.series.filter( chartObj => {
+                return chartObj.name !== action.payload
+            });
+            
+            return Object.assign({}, state, { 
+                chartData: {
+                    ...state.chartData,
+                    series
+                }
+            })
+
         default: 
             return state;
 
