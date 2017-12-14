@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { removeStock } from '../actions/actions';
 import '../styles/stocktag.css';
 
 export default class StockTag extends Component {
@@ -9,7 +10,7 @@ export default class StockTag extends Component {
     }
 
     handleClick(){
-        console.log(`you clicked the ${this.props.symbol} tag`);
+        this.props.dispatch(removeStock(this.props.symbol));
     }
 
     render(){
