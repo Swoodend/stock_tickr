@@ -3,7 +3,7 @@ const initialState = {
     chartTitle: 'Enter a stock below'
 }
 
-function appState(state = initialState, action){
+export function appState(state = initialState, action){
     switch(action.type){
         case "UPDATE_INPUT_VALUE":
             return Object.assign({}, state, {
