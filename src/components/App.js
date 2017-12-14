@@ -19,7 +19,10 @@ export default class App extends Component {
             <div className="app">
                 <MainTitle/>
                 <MainChart chartData={this.props.chartData}/>
-                <CurrentStocksPanel dispatch={this.props.dispatch} currentStocks={currentStocks}/>
+                <CurrentStocksPanel 
+                    dispatch={this.props.dispatch} 
+                    currentStocks={currentStocks}
+                />
                 <StockInputField dispatch={this.props.dispatch}/>
             </div>
         );  
