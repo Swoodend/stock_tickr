@@ -6,7 +6,7 @@ export default class CurrentStocksPanel extends Component {
     render(){
         let stockTags = this.props.currentStocks.map((stockName, i) => {
             return (
-                <StockTag key={i} symbol={stockName}/>
+                <StockTag dispatch={this.props.dispatch} key={i} symbol={stockName}/>
             )
         })
         return (
