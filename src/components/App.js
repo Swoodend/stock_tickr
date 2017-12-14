@@ -9,7 +9,8 @@ import '../styles/app.css';
 @connect((store) => {
     return {
         chartData: store.chartData,
-        dispatch: store.dispatch
+        dispatch: store.dispatch,
+        fetchingData: store.appState.fetchingData
     }
 })
 export default class App extends Component {
@@ -18,7 +19,7 @@ export default class App extends Component {
         return (
             <div className="app">
                 <MainTitle/>
-                <MainChart chartData={this.props.chartData}/>
+                <MainChart fetchingData={this.props.fetchingData} chartData={this.props.chartData}/>
                 <CurrentStocksPanel 
                     dispatch={this.props.dispatch} 
                     currentStocks={currentStocks}
