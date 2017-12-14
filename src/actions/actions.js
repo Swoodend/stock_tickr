@@ -21,6 +21,13 @@ export function addStock(symbol, seriesObj){
     }
 }
 
+export function removeStock(symbol){
+    return {
+        type: "REMOVE_STOCK",
+        payload: symbol
+    }
+}
+
 export function getInitialState(year){
 
     return dispatch => {
