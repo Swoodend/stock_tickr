@@ -4,9 +4,14 @@ import '../styles/currentstockspanel.css';
 
 export default class CurrentStocksPanel extends Component {
     render(){
-        let stockTags = this.props.currentStocks.map((stockName, i) => {
+        let stockTags = this.props.currentStocks.map((stockName, i, allStocks) => {
             return (
-                <StockTag dispatch={this.props.dispatch} key={i} symbol={stockName}/>
+                <StockTag 
+                    key={i} 
+                    allStocks={allStocks} 
+                    dispatch={this.props.dispatch} 
+                    symbol={stockName}
+                />
             )
         })
         return (
