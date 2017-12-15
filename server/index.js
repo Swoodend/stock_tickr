@@ -10,6 +10,18 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, '/../dist/index.html'));
 })
 
-app.listen(port, () => {
+
+const server = app.listen(port, () => {
     console.log('server running on port', port);
 });
+
+const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id, 'connected');
+
+    socket.on('disconnect', () => {
+        console.log(socket.id, 'disconnected');
+    })
+});
+
