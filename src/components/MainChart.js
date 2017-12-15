@@ -16,7 +16,6 @@ export default class MainChart extends Component {
         return (
             <div className="main-chart-container">
                 <ReactHighcharts 
-                    ref="chart"
                     config={this.props.chartData} 
                     domProps={{style: {height: "100%", width:"100%"}}}
                     isPureConfig
