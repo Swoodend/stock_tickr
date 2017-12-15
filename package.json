@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -d",
     "start": "npm run open",
-    "open": "webpack-dev-server --open"
+    "open": "concurrently \"cd server && nodemon index.js\" \"webpack-dev-server --open\""
   },
   "keywords": [],
   "author": "",
