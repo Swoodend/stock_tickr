@@ -45,6 +45,12 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
-        port: 3001
+        port: 3001,
+        proxy: {
+            "/socket.io/*": {
+                target: "http://localhost:3000",
+                secure: false
+            }
+        }
     }
 }
