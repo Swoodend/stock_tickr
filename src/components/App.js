@@ -4,7 +4,10 @@ import MainTitle from './MainTitle';
 import MainChart from './MainChart';
 import CurrentStocksPanel from './CurrentStocksPanel';
 import StockInputField from './StockInputField';
+import io from 'socket.io-client';
 import '../styles/app.css';
+
+const socket = io();
 
 @connect((store) => {
     return {
