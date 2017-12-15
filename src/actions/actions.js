@@ -1,3 +1,4 @@
+import { fetchingData } from './appState';
 
 export function getData(symbol){
     //takes a stock symbol (string) and retreives data from api for said symbol
@@ -21,29 +22,29 @@ export function addStock(symbol, seriesObj){
     }
 }
 
+export function addNewStock(symbol){
+    return dispatch => {
+        dispatch(fetchingData(true));
+        getData(symbol)
+        .then(
+            stockData => {
+                dispatch(fetchingData(false));
+                let formattedData = formatDataForHighcharts(stockData);
+                dispatch(addStock(symbol, formattedData));
+
+
+            },
+            err => {
+                console.log("THERE WAS AN ERROR", err);
+            }
+        )
+    }
+}
 export function removeStock(symbol){
     return {
         type: "REMOVE_STOCK",
         payload: symbol
     }
-}
-
-export function getInitialState(year){
-
-    return dispatch => {
-        Promise.all([getData('GOOG'), getData('AAPL')])
-        .then(([allGoogleData, allAppleData]) => {
-
-           let googSeriesObj = formatDataForHighcharts(allGoogleData, year);
-           let aaplSeriesObj = formatDataForHighcharts(allAppleData, year);
-            //dispatch some action here
-
-        }).catch((e) => {
-            console.log(e);
-            //dispatch error handling action here
-        })
-    }
-
 }
 
 export function formatDataForHighcharts(apiResponse, year="2017"){
