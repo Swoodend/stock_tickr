@@ -15,9 +15,16 @@ export function getData(symbol){
     )
 }
 
-export function addStock(symbol, seriesObj){
+export function addStock(seriesObj){
     return {
         type: "ADD_STOCK",
+        payload: seriesObj
+    }
+}
+
+export function wsAddStock(seriesObj){
+    return {
+        type: "WS_ADD_STOCK",
         payload: seriesObj
     }
 }
@@ -30,7 +37,7 @@ export function addNewStock(symbol){
             stockData => {
                 dispatch(fetchingData(false));
                 let formattedData = formatDataForHighcharts(stockData);
-                dispatch(addStock(symbol, formattedData));
+                dispatch(addStock(formattedData));
 
 
             },
@@ -43,6 +50,13 @@ export function addNewStock(symbol){
 export function removeStock(symbol){
     return {
         type: "REMOVE_STOCK",
+        payload: symbol
+    }
+}
+
+export function wsRemoveStock(symbol){
+    return {
+        type: "WS_REMOVE_STOCK",
         payload: symbol
     }
 }
