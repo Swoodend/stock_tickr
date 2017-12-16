@@ -6,9 +6,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '/../dist')));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '/../dist/index.html'));
-})
 
 
 const server = app.listen(port, () => {
@@ -23,5 +20,17 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log(socket.id, 'disconnected');
     })
+
+    socket.on('add stock', stockObj => {
+        io.emit('new stock', stockObj);
+    });
+
+    socket.on('remove stock', symbol => {
+        io.emit('removed stock', symbol);
+    })
 });
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, '/../dist/index.html'));
+})
 
