@@ -1,4 +1,5 @@
-import { fetchingData } from './appState';
+import { fetchingData, caughtError } from './appState';
+
 
 export function getData(symbol){
     //takes a stock symbol (string) and retreives data from api for said symbol
@@ -36,21 +37,25 @@ export function addNewStock(symbol){
         .then(
             stockData => {
                 dispatch(fetchingData(false));
-                let formattedData = formatDataForHighcharts(stockData);
-                dispatch(addStock(formattedData));
+                if (!stockData['Error Message']){
+                    let formattedData = formatDataForHighcharts(stockData);
+                    dispatch(addStock(formattedData));
+                } else {
+                    let error = `Cannot find stock data for ${symbol.toUpperCase()}`
+                    throw new Error(error);
+                }
 
-
-            },
-            err => {
-                console.log("THERE WAS AN ERROR", err);
             }
         )
+        .catch(e => {
+            dispatch(caughtError(e.message));
+        })
     }
 }
 export function removeStock(symbol){
     return {
         type: "REMOVE_STOCK",
-        payload: symbol
+        payload: symbol 
     }
 }
 
@@ -62,7 +67,8 @@ export function wsRemoveStock(symbol){
 }
 
 export function formatDataForHighcharts(apiResponse, year="2017"){
-    //takes in apiResponse (obj literal) and formats for usage by highchartsApi    
+    //takes in apiResponse (obj literal) and formats for usage by highchartsApi  
+    console.log('called with', apiResponse);  
     let symbol = apiResponse['Meta Data']['2. Symbol'].toUpperCase();
 
     //get all the data keys for year 2017, you could allow the user to choose a year    
