@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactHighcharts from 'react-highcharts';
 import FetchDataModal from './FetchDataModal';
+import ErrorModal from './ErrorModal';
 import '../styles/mainchart.css';
 
 export default class MainChart extends Component {
@@ -20,7 +21,8 @@ export default class MainChart extends Component {
                     domProps={{style: {height: "100%", width:"100%"}}}
                     isPureConfig
                 />
-                {this.props.fetchingData && <FetchDataModal/>}
+                {this.props.fetchingData && <FetchDataModal />}
+                {!this.props.fetchingData && this.props.error && <ErrorModal dispatch={this.props.dispatch} error={this.props.error} />}
             </div>
         )
     }
