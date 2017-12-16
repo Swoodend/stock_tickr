@@ -1,4 +1,5 @@
 import { addStock } from '../actions/actions';
+
 export const socketMiddleware = (socket) => {
     return (store) => (next) => (action) => {
         if(action.type === "ADD_STOCK"){

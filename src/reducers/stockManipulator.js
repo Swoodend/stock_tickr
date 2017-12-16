@@ -26,7 +26,6 @@ export function stockManipulator(state = initialState, action){
                 series: state.series.concat(action.payload)
             });
 
-
         case "REMOVE_STOCK":
             let series = state.series.filter( chartObj => {
                 return chartObj.name !== action.payload
