@@ -1,7 +1,8 @@
 const initialState = {
     stockInputValue: '',
     chartTitle: 'Enter a stock below',
-    fetchingData: false
+    fetchingData: false,
+    error: false
 }
 
 export function appState(state = initialState, action){
@@ -19,6 +20,11 @@ export function appState(state = initialState, action){
         case "FETCHING_DATA":
             return Object.assign({}, state, {
                 fetchingData: action.payload
+            })
+
+        case "ERROR":
+            return Object.assign({}, state, {
+                error: action.payload
             })
         default: 
             return state;
