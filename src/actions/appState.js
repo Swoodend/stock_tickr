@@ -18,3 +18,10 @@ export function fetchingData(bool){
         payload: bool
     }
 }
+
+export function caughtError(e){
+    return {
+        type: "ERROR",
+        payload: e
+    }
+}
