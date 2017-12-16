@@ -26,6 +26,7 @@ export function stockManipulator(state = initialState, action){
                 series: state.series.concat(action.payload)
             });
 
+
         case "REMOVE_STOCK":
             let series = state.series.filter( chartObj => {
                 return chartObj.name !== action.payload
@@ -33,7 +34,18 @@ export function stockManipulator(state = initialState, action){
             
             return Object.assign({}, state, { 
                 series
-            })
+            });
+
+        case "WS_ADD_STOCK":
+            return Object.assign({}, state, {
+                series: state.series.concat(action.payload)
+            });
+
+        case "WS_REMOVE_STOCK":
+            let newSeries = state.series.filter( chartObj => chartObj.name !== action.payload)
+            return Object.assign({}, state, {
+                series: newSeries
+            });
 
         default: 
             return state;
