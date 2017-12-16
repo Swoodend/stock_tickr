@@ -11,7 +11,8 @@ import '../styles/app.css';
     return {
         chartData: store.chartData,
         dispatch: store.dispatch,
-        fetchingData: store.appState.fetchingData
+        fetchingData: store.appState.fetchingData,
+        error: store.appState.error
     }
 })
 export default class App extends Component {
@@ -20,7 +21,12 @@ export default class App extends Component {
         return (
             <div className="app">
                 <MainTitle/>
-                <MainChart fetchingData={this.props.fetchingData} chartData={this.props.chartData}/>
+                <MainChart 
+                    error={this.props.error} 
+                    fetchingData={this.props.fetchingData} 
+                    chartData={this.props.chartData}
+                    dispatch={this.props.dispatch}
+                />
                 <CurrentStocksPanel 
                     dispatch={this.props.dispatch} 
                     currentStocks={currentStocks}
