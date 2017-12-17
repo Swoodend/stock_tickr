@@ -25,3 +25,9 @@ export function caughtError(e){
         payload: e
     }
 }
+
+export function fireNewConnection(){
+    return {
+        type: "NEW_CONNECTION"
+    }
+}
