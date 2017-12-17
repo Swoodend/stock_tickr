@@ -16,6 +16,16 @@ socket.on('removed stock', symbol => {
     store.dispatch(wsRemoveStock(symbol));
 })
 
+socket.on('update chart state', chartData => {
+    let seriesArr = chartData.map(cdObj => {
+        delete cdObj['_id']
+        return cdObj
+    })
+    if (chartData.length){
+        store.dispatch(wsAddStock(seriesArr));
+    }
+})
+
 let middlewares = applyMiddleware(logger, thunk, socketMiddleware(socket));
 let reducers = combineReducers({
     'appState': appState,
