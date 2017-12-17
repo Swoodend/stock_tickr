@@ -5,7 +5,9 @@ export const socketMiddleware = (socket) => {
         if(action.type === "ADD_STOCK"){
           socket.emit('add stock', action.payload);
         } else if(action.type === "REMOVE_STOCK"){
-            socket.emit('remove stock', action.payload)
+            socket.emit('remove stock', action.payload);
+        } else if (action.type === "NEW_CONNECTION") {
+            socket.emit('update chart state');
         } else {
             next(action);    
         }
