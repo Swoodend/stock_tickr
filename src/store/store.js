@@ -17,12 +17,8 @@ socket.on('removed stock', symbol => {
 })
 
 socket.on('update chart state', chartData => {
-    let seriesArr = chartData.map(cdObj => {
-        delete cdObj['_id']
-        return cdObj
-    })
     if (chartData.length){
-        store.dispatch(wsAddStock(seriesArr));
+        store.dispatch(wsAddStock(chartData));
     }
 })
 
