@@ -27,7 +27,7 @@ MongoClient.connect('mongodb://localhost:27017/', (err, db) => {
         io.on('connection', (socket) => {
             clients.push(socket.id);
             socket.on('update chart state', () => {
-                collection.find({}, {name: 1, data: 1,   _id: 0}).toArray((err, result) => {
+                collection.find({}).project({_id:0}).toArray((err, result) => {
                     io.sockets.connected[clients[clients.length - 1]].emit('update chart state', result)                
                 });
             })
